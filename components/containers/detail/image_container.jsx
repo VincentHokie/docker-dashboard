@@ -16,7 +16,7 @@ class ImageDetailContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <ImageSubnav id={this.props.match.params.imageId} />
+          <ImageSubnav id={this.props.match.params.imageId} push={this.pushNavigation} />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           {renderInspection(this.props.details)}

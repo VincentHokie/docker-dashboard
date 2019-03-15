@@ -4,14 +4,14 @@ import Icon from 'react-bulma-components/lib/components/icon';
 import Tabs from 'react-bulma-components/lib/components/tabs';
 import PropTypes from 'prop-types';
 
-const NodeDetailSubnav = ({ id }) => (
+const NodeDetailSubnav = ({ id, push }) => (
   <Level renderAs="nav">
     <Level.Side align="left">
       <Level.Item>
         <Tabs>
-          <Tabs.Tab as="a" href={`/nodes/${id}/stats`}>Stats</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/nodes/${id}/details`}>Inspect</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/nodes/${id}/events`}>Events</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/nodes/${id}/stats`} onClick={push}>Stats</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/nodes/${id}/details`} onClick={push}>Inspect</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/nodes/${id}/events`} onClick={push}>Events</Tabs.Tab>
         </Tabs>
       </Level.Item>
     </Level.Side>
@@ -33,6 +33,7 @@ const NodeDetailSubnav = ({ id }) => (
 
 NodeDetailSubnav.propTypes = {
   id: PropTypes.string.isRequired,
+  push: PropTypes.func.isRequired,
 };
 
 export default NodeDetailSubnav;

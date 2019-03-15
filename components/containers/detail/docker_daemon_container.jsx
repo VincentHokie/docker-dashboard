@@ -13,7 +13,10 @@ class DockerDaemonDetailContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <DockerDaemonSubnav id={this.props.match.params.dockerDaemonId} />
+          <DockerDaemonSubnav
+            id={this.props.match.params.dockerDaemonId}
+            push={this.pushNavigation}
+          />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           {renderInspection(this.props.details)}

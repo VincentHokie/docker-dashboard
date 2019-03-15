@@ -16,7 +16,7 @@ class VolumeDetailContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <VolumeSubnav id={this.props.match.params.volumeId} />
+          <VolumeSubnav id={this.props.match.params.volumeId} push={this.pushNavigation} />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           {renderInspection(this.props.details)}

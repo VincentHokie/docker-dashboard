@@ -16,7 +16,7 @@ class SecretDetailContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <SecretSubnav id={this.props.match.params.secretId} />
+          <SecretSubnav id={this.props.match.params.secretId} push={this.pushNavigation} />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           {renderInspection(this.props.details)}

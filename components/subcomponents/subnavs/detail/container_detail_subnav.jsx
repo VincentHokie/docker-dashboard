@@ -4,16 +4,16 @@ import Icon from 'react-bulma-components/lib/components/icon';
 import Tabs from 'react-bulma-components/lib/components/tabs';
 import PropTypes from 'prop-types';
 
-const ContainerDetailSubnav = ({ id }) => (
+const ContainerDetailSubnav = ({ id, push }) => (
   <Level renderAs="nav">
     <Level.Side align="left">
       <Level.Item>
         <Tabs>
-          <Tabs.Tab as="a" href={`/containers/${id}/stats`}>Stats</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/containers/${id}/details`}>Inspect</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/containers/${id}/events`}>Events</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/containers/${id}/logs`}>Logs</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/containers/${id}/processes`}>Processes</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/containers/${id}/stats`} onClick={push}>Stats</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/containers/${id}/details`} onClick={push}>Inspect</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/containers/${id}/events`} onClick={push}>Events</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/containers/${id}/logs`} onClick={push}>Logs</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/containers/${id}/processes`} onClick={push}>Processes</Tabs.Tab>
         </Tabs>
       </Level.Item>
     </Level.Side>
@@ -35,6 +35,7 @@ const ContainerDetailSubnav = ({ id }) => (
 
 ContainerDetailSubnav.propTypes = {
   id: PropTypes.string.isRequired,
+  push: PropTypes.func.isRequired,
 };
 
 export default ContainerDetailSubnav;

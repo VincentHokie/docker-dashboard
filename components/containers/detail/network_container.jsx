@@ -16,7 +16,7 @@ class NetworkDetailContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <NetworkSubnav id={this.props.match.params.neetworkId} />
+          <NetworkSubnav id={this.props.match.params.neetworkId} push={this.pushNavigation} />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           {renderInspection(this.props.details)}

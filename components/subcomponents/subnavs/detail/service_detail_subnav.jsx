@@ -4,15 +4,15 @@ import Icon from 'react-bulma-components/lib/components/icon';
 import Tabs from 'react-bulma-components/lib/components/tabs';
 import PropTypes from 'prop-types';
 
-const ServiceDetailSubnav = ({ id }) => (
+const ServiceDetailSubnav = ({ id, push }) => (
   <Level renderAs="nav">
     <Level.Side align="left">
       <Level.Item>
         <Tabs>
-          <Tabs.Tab as="a" href={`/services/${id}/stats`}>Stats</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/services/${id}/details`}>Inspect</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/services/${id}/events`}>Events</Tabs.Tab>
-          <Tabs.Tab as="a" href={`/services/${id}/logs`}>Logs</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/services/${id}/stats`} onClick={push}>Stats</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/services/${id}/details`} onClick={push}>Inspect</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/services/${id}/events`} onClick={push}>Events</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/services/${id}/logs`} onClick={push}>Logs</Tabs.Tab>
         </Tabs>
       </Level.Item>
     </Level.Side>
@@ -34,6 +34,7 @@ const ServiceDetailSubnav = ({ id }) => (
 
 ServiceDetailSubnav.propTypes = {
   id: PropTypes.string.isRequired,
+  push: PropTypes.func.isRequired,
 };
 
 export default ServiceDetailSubnav;

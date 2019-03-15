@@ -10,7 +10,10 @@ class DetailContainerDetailContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <DetailContainerSubnav id={this.props.match.params.containerId} />
+          <DetailContainerSubnav
+            id={this.props.match.params.containerId}
+            push={this.pushNavigation}
+          />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           { this.props.children }

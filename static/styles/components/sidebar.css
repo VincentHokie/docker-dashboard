@@ -1,0 +1,17 @@
+aside.menu{
+    padding: 0 30px;
+    margin: 0;
+    border-right: 2px solid #eee;
+    margin-top: 10px
+}
+
+aside.menu i.fa {
+    color: rgb(186,42,98);
+    font-size: 20px;
+    padding: 0 10px;
+    float: right;
+}
+
+.menu-label:not(:last-child) {
+    margin-bottom: 0;
+}

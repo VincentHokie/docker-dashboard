@@ -1,0 +1,13 @@
+const configDetail = {
+  ID: 'ktnbjxoalbkvbvedmg1urrz8h',
+  Version: {
+    Index: 11,
+  },
+  CreatedAt: '2016-11-05T01:20:17.327670065Z',
+  UpdatedAt: '2016-11-05T01:20:17.327670065Z',
+  Spec: {
+    Name: 'app-dev.crt',
+  },
+};
+
+module.exports = configDetail;

@@ -6,7 +6,7 @@ import {
 } from '../types/node.jsx';
 
 const initState = {
-  nodes: [],
+  nodes: {},
   events: [],
   details: {},
   stats: {},

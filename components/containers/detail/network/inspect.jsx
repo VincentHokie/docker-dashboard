@@ -1,26 +1,29 @@
 import React from 'react';
 import Base from '../../base.jsx';
-import DetailContainerBase from '../container_container.jsx';
+import DetailNetworkBase from '../network_container.jsx';
 import DashboardWrapper from '../../dashboardHOC.jsx';
-import ContainerService from '../../../../actions/container_service.jsx';
+import NetworkService from '../../../../actions/network_service.jsx';
+import renderInspection from '../../../../utils/renderInspect.jsx';
 
 
-class ContainerStats extends Base {
+class NetworkInspect extends Base {
   componentDidMount() {
-    this.props.getContainerStats(this.props.match.params.containerId);
+    this.props.getNetworkDetail(this.props.match.params.networkId);
   }
 
   render() {
     return (
-      <DetailContainerBase match={this.props.match} />
+      <DetailNetworkBase match={this.props.match} push={this.pushNavigation}>
+        {renderInspection(this.props.details)}
+      </DetailNetworkBase>
     );
   }
 }
 
 export default DashboardWrapper(
-  ContainerStats,
-  { ...ContainerService },
+  NetworkInspect,
+  { ...NetworkService },
   state => ({
-    stats: state.containerReducer.stats,
+    details: state.networkReducer.details,
   }),
 );

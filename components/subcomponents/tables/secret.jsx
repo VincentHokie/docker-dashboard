@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const SecretTable = ({ secrets, push }) => (
   <Table>
@@ -37,7 +38,7 @@ const SecretTable = ({ secrets, push }) => (
           Object.keys(secrets).map((secretId) => {
             const secret = secrets[secretId];
             return (
-              <tr key={secretId}>
+              <tr key={uuid()}>
                 <th>
                   <a href={`/secrets/${secret.ID}/details`} onClick={push}>
                     {secret.Spec.Name}
@@ -51,15 +52,19 @@ const SecretTable = ({ secrets, push }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 SecretTable.propTypes = {
-  secrets: PropTypes.shape({}).isRequired,
+  secrets: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+};
+
+SecretTable.defaultProps = {
+  secrets: {},
 };
 
 export default SecretTable;

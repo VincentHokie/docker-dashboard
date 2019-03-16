@@ -2,6 +2,7 @@ import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import Icon from 'react-bulma-components/lib/components/icon';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const ContainerTable = ({ containers, push }) => (
   <Table>
@@ -44,7 +45,7 @@ const ContainerTable = ({ containers, push }) => (
           Object.keys(containers).map((containerName) => {
             const container = containers[containerName];
             return (
-              <tr key={containerName}>
+              <tr key={uuid()}>
                 <th>
                   <a href={`/containers${container.Names[0]}/details`} onClick={push}>
                     { container.Names[0] }
@@ -63,15 +64,19 @@ const ContainerTable = ({ containers, push }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 ContainerTable.propTypes = {
-  containers: PropTypes.shape({}).isRequired,
+  containers: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+};
+
+ContainerTable.defaultProps = {
+  containers: {},
 };
 
 export default ContainerTable;

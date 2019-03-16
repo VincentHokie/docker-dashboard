@@ -7,7 +7,7 @@ import {
 } from '../types/service.jsx';
 
 const initState = {
-  services: [],
+  services: {},
   logs: '',
   events: [],
   details: {},

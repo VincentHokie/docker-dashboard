@@ -10,13 +10,19 @@ import ServiceContainer from './components/containers/general/service_container.
 import SecretContainer from './components/containers/general/secret_container.jsx';
 import NodeContainer from './components/containers/general/node_container.jsx';
 import ConfigContainer from './components/containers/general/config_container.jsx';
-import ImageDetailContainer from './components/containers/detail/image_container.jsx';
-import VolumeDetailContainer from './components/containers/detail/volume_container.jsx';
-import NetworkDetailContainer from './components/containers/detail/network_container.jsx';
-import DockerDaemonDetailContainer from './components/containers/detail/docker_daemon_container.jsx';
-import ServiceDetailContainer from './components/containers/detail/service_container.jsx';
-import SecretDetailContainer from './components/containers/detail/secret_container.jsx';
-import NodeDetailContainer from './components/containers/detail/node_container.jsx';
+
+import VolumeInspect from './components/containers/detail/volume/inspect.jsx';
+
+import ServiceInspect from './components/containers/detail/service/inspect.jsx';
+
+import SecretInspect from './components/containers/detail/secret/inspect.jsx';
+
+import NodeInspect from './components/containers/detail/node/inspect.jsx';
+
+import NetworkInspect from './components/containers/detail/network/inspect.jsx';
+
+import ImageInspect from './components/containers/detail/image/inspect.jsx';
+import ImageHistory from './components/containers/detail/image/history.jsx';
 
 import InspectContainer from './components/containers/detail/container/inspect.jsx';
 // import ContainerEvents from './components/containers/detail/container/events.jsx';
@@ -42,13 +48,12 @@ export default () => (
         <Route exact path="/configs" component={ConfigContainer} />
 
         <Route exact path="/containers/:containerId/details" component={InspectContainer} />
-        <Route exact path="/images/:imageId/details" component={ImageDetailContainer} />
-        <Route exact path="/volumes/:volumeId/details" component={VolumeDetailContainer} />
-        <Route exact path="/networks/:networkId/details" component={NetworkDetailContainer} />
-        <Route exact path="/services/:serviceId/details" component={ServiceDetailContainer} />
-        <Route exact path="/nodes/:nodeId/details" component={NodeDetailContainer} />
-        <Route exact path="/secrets/:secretId/details" component={SecretDetailContainer} />
-        <Route exact path="/docker-daemon/:daemonId/details" component={DockerDaemonDetailContainer} />
+        <Route exact path="/images/:imageId/details" component={ImageInspect} />
+        <Route exact path="/volumes/:volumeId/details" component={VolumeInspect} />
+        <Route exact path="/networks/:networkId/details" component={NetworkInspect} />
+        <Route exact path="/services/:serviceId/details" component={ServiceInspect} />
+        <Route exact path="/nodes/:nodeId/details" component={NodeInspect} />
+        <Route exact path="/secrets/:secretId/details" component={SecretInspect} />
 
         {/*
         <Route path="/containers/:containerId/events" component={} />
@@ -62,11 +67,12 @@ export default () => (
         <Route path="/configs/:configId/events" component={} />
          */}
 
+        <Route exact path="/images/:imageId/history" component={ImageHistory} />
+
         <Route path="/containers/:containerId/processes" component={ContainerProcesses} />
-
         <Route path="/containers/:containerId/stats" component={ContainerStats} />
-
         <Route path="/containers/:containerId/logs" component={ContainerLogs} />
+
         {/* <Route path="/services/:serviceId/logs" component={} /> */}
 
       </Switch>

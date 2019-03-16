@@ -13,7 +13,7 @@ class InspectContainer extends Base {
 
   render() {
     return (
-      <DetailContainerBase match={this.props.match}>
+      <DetailContainerBase match={this.props.match} push={this.pushNavigation}>
         {renderInspection(this.props.details)}
       </DetailContainerBase>
     );

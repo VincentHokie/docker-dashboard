@@ -9,7 +9,7 @@ const ImagesDetailSubnav = ({ id, push }) => (
     <Level.Side align="left">
       <Level.Item>
         <Tabs>
-          <Tabs.Tab as="a" href={`/images/${id}/json`} onClick={push}>Inspect</Tabs.Tab>
+          <Tabs.Tab as="a" href={`/images/${id}/details`} onClick={push}>Inspect</Tabs.Tab>
           <Tabs.Tab as="a" href={`/images/${id}/history`} onClick={push}>History</Tabs.Tab>
           <Tabs.Tab as="a" href={`/images/${id}/events`} onClick={push}>Events</Tabs.Tab>
         </Tabs>

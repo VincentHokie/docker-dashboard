@@ -1,26 +1,29 @@
 import React from 'react';
 import Base from '../../base.jsx';
-import DetailContainerBase from '../container_container.jsx';
+import DetailVolumeBase from '../volume_container.jsx';
 import DashboardWrapper from '../../dashboardHOC.jsx';
-import ContainerService from '../../../../actions/container_service.jsx';
+import VolumeService from '../../../../actions/volume_service.jsx';
+import renderInspection from '../../../../utils/renderInspect.jsx';
 
 
-class ContainerStats extends Base {
+class VolumeInspect extends Base {
   componentDidMount() {
-    this.props.getContainerStats(this.props.match.params.containerId);
+    this.props.getVolumeDetail(this.props.match.params.volumeId);
   }
 
   render() {
     return (
-      <DetailContainerBase match={this.props.match} />
+      <DetailVolumeBase match={this.props.match} push={this.pushNavigation}>
+        {renderInspection(this.props.details)}
+      </DetailVolumeBase>
     );
   }
 }
 
 export default DashboardWrapper(
-  ContainerStats,
-  { ...ContainerService },
+  VolumeInspect,
+  { ...VolumeService },
   state => ({
-    stats: state.containerReducer.stats,
+    details: state.volumeReducer.details,
   }),
 );

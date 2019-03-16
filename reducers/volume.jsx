@@ -6,7 +6,7 @@ import {
 } from '../types/volume.jsx';
 
 const initState = {
-  volumes: [],
+  volumes: {},
   events: [],
   details: {},
   stats: {},

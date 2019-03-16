@@ -1,26 +1,26 @@
 import React from 'react';
 import Base from '../../base.jsx';
-import DetailContainerBase from '../container_container.jsx';
+import ImageDetailBase from '../image_container.jsx';
 import DashboardWrapper from '../../dashboardHOC.jsx';
-import ContainerService from '../../../../actions/container_service.jsx';
+import ImageService from '../../../../actions/image_service.jsx';
 
 
-class ContainerStats extends Base {
+class ImageHistory extends Base {
   componentDidMount() {
-    this.props.getContainerStats(this.props.match.params.containerId);
+    this.props.getImageHistory(this.props.match.params.imageId);
   }
 
   render() {
     return (
-      <DetailContainerBase match={this.props.match} />
+      <ImageDetailBase match={this.props.match} push={this.pushNavigation} />
     );
   }
 }
 
 export default DashboardWrapper(
-  ContainerStats,
-  { ...ContainerService },
+  ImageHistory,
+  { ...ImageService },
   state => ({
-    stats: state.containerReducer.stats,
+    imageHistory: state.imageReducer.imageHistory,
   }),
 );

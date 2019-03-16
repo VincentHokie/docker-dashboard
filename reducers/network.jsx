@@ -6,7 +6,7 @@ import {
 } from '../types/network.jsx';
 
 const initState = {
-  networks: [],
+  networks: {},
   events: [],
   details: {},
   stats: {},

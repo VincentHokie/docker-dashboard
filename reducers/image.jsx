@@ -3,13 +3,15 @@ import {
   IMAGE_EVENTS_RETRIEVED,
   IMAGE_DETAILS_RETRIEVED,
   IMAGE_STATS_RETRIEVED,
+  IMAGE_HISTORY_RETRIEVED,
 } from '../types/image.jsx';
 
 const initState = {
-  images: [],
+  images: {},
   events: [],
   details: {},
   stats: {},
+  imageHistory: [],
 };
 
 export default (state = initState, action) => {
@@ -33,6 +35,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         stats: action.payload,
+      };
+    case IMAGE_HISTORY_RETRIEVED:
+      return {
+        ...state,
+        imageHistory: action.payload,
       };
     default:
       return state;

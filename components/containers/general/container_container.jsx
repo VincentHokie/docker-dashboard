@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import DashboardWrapper from '../dashboardHOC.jsx';
@@ -22,7 +23,11 @@ class ContainerContainer extends Base {
           {
             this.props.containers ?
               Object.keys(this.props.containers).map((containerName, index) => (
-                <SpaceCard container={this.props.containers[containerName]} index={index} />
+                <SpaceCard
+                  container={this.props.containers[containerName]}
+                  key={uuid()}
+                  index={index}
+                />
               )) : ''
           }
           <ContainerTable containers={this.props.containers} push={this.pushNavigation} />

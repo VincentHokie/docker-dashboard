@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const ConfigTable = ({ configs }) => (
   <Table>
@@ -43,7 +44,7 @@ const ConfigTable = ({ configs }) => (
           Object.keys(configs).map((configName) => {
             const config = configs[configName];
             return (
-              <tr key={configName}>
+              <tr key={uuid()}>
                 <th>
                   { config.Spec.Name }
                 </th>
@@ -58,14 +59,18 @@ const ConfigTable = ({ configs }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 ConfigTable.propTypes = {
-  configs: PropTypes.shape({}).isRequired,
+  configs: PropTypes.shape({}),
+};
+
+ConfigTable.defaultProps = {
+  configs: {},
 };
 
 export default ConfigTable;

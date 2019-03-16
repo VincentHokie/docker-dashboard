@@ -12,7 +12,7 @@ class ContainerStats extends Base {
 
   render() {
     return (
-      <DetailContainerBase match={this.props.match} />
+      <DetailContainerBase match={this.props.match} push={this.pushNavigation} />
     );
   }
 }

@@ -6,7 +6,7 @@ import {
 } from '../types/secret.jsx';
 
 const initState = {
-  secrets: [],
+  secrets: {},
   events: [],
   details: {},
   stats: {},

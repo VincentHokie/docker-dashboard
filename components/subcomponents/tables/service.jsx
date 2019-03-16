@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const ServiceTable = ({ services, push }) => (
   <Table>
@@ -48,7 +49,7 @@ const ServiceTable = ({ services, push }) => (
           Object.keys(services).map((serviceName) => {
             const service = services[serviceName];
             return (
-              <tr key={serviceName}>
+              <tr key={uuid()}>
                 <th>
                   <a href={`/services/${serviceName}/details`} onClick={push}>
                     {serviceName}
@@ -68,15 +69,19 @@ const ServiceTable = ({ services, push }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 ServiceTable.propTypes = {
-  services: PropTypes.shape({}).isRequired,
+  services: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+};
+
+ServiceTable.defaultProps = {
+  services: {},
 };
 
 module.exports = ServiceTable;

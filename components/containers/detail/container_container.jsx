@@ -12,7 +12,7 @@ class DetailContainerDetailContainer extends Base {
         <Columns.Column>
           <DetailContainerSubnav
             id={this.props.match.params.containerId}
-            push={this.pushNavigation}
+            push={this.props.push}
           />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>

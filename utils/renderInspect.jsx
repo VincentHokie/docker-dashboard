@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from 'react-bulma-components/lib/components/menu';
+import uuid from 'uuid/v4';
 
 const renderInspection = (detail, menuTitle = 'General') => (
   detail ?
@@ -9,7 +10,7 @@ const renderInspection = (detail, menuTitle = 'General') => (
           const value = detail[key];
           const isObj = value === Object(value);
           return (
-            <Menu.List.Item>
+            <Menu.List.Item key={uuid()}>
               {isObj ? renderInspection(value, key) : `${key}: ${value}`}
             </Menu.List.Item>
           );

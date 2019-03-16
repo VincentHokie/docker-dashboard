@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const NetworkTable = ({ networks, push }) => (
   <Table>
@@ -43,7 +44,7 @@ const NetworkTable = ({ networks, push }) => (
           Object.keys(networks).map((networkName) => {
             const network = networks[networkName];
             return (
-              <tr key={networkName}>
+              <tr key={uuid()}>
                 <th>
                   <a href={`/networks/${network.Name}/details`} onClick={push}>
                     {network.Name}
@@ -60,15 +61,19 @@ const NetworkTable = ({ networks, push }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 NetworkTable.propTypes = {
-  networks: PropTypes.shape({}).isRequired,
+  networks: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+};
+
+NetworkTable.defaultProps = {
+  networks: {},
 };
 
 export default NetworkTable;

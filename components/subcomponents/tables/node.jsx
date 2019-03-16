@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const NodeTable = ({ nodes, push }) => (
   <Table>
@@ -54,7 +55,7 @@ const NodeTable = ({ nodes, push }) => (
           Object.keys(nodes).map((nodeName) => {
             const node = nodes[nodeName];
             return (
-              <tr key={nodeName}>
+              <tr key={uuid()}>
                 <th>
                   <a href={`/nodes/${node.Name}/details`} onClick={push}>
                     {node.Spec.Name}
@@ -77,15 +78,19 @@ const NodeTable = ({ nodes, push }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 NodeTable.propTypes = {
-  nodes: PropTypes.shape({}).isRequired,
+  nodes: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+};
+
+NodeTable.defaultProps = {
+  nodes: {},
 };
 
 export default NodeTable;

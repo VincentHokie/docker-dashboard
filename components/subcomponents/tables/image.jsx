@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const ImageTable = ({ images, push }) => (
   <Table>
@@ -49,7 +50,7 @@ const ImageTable = ({ images, push }) => (
           Object.keys(images).map((imageName) => {
             const image = images[imageName];
             return (
-              <tr key={imageName}>
+              <tr key={uuid()}>
                 <th>
                   <a href={`/images/${image.RepoTags[0]}/details`} onClick={push}>
                     {image.RepoTags[0]}
@@ -69,15 +70,19 @@ const ImageTable = ({ images, push }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 ImageTable.propTypes = {
-  images: PropTypes.shape({}).isRequired,
+  images: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+};
+
+ImageTable.defaultProps = {
+  images: {},
 };
 
 export default ImageTable;

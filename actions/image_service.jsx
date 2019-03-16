@@ -1,7 +1,7 @@
 import {
   IMAGES_RETRIEVED,
   IMAGE_DETAILS_RETRIEVED,
-  IMAGE_EVENTS_RETRIEVED,
+  IMAGE_HISTORY_RETRIEVED,
 } from '../types/image.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -69,7 +69,7 @@ const getImageHistory = imageId => (
         type: ERROR_PAGE_CLEAR,
       });
       dispatch({
-        type: IMAGE_EVENTS_RETRIEVED,
+        type: IMAGE_HISTORY_RETRIEVED,
         payload: data,
       });
     }).catch((error) => {

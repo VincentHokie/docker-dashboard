@@ -9,7 +9,7 @@ import {
 
 const initState = {
   containers: {},
-  processes: [],
+  processes: {},
   logs: '',
   events: [],
   details: {},

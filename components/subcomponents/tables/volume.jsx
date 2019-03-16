@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 const VolumeTable = ({ volumes, push }) => (
   <Table>
@@ -43,7 +44,7 @@ const VolumeTable = ({ volumes, push }) => (
           Object.keys(volumes).map((volumeName) => {
             const volume = volumes[volumeName];
             return (
-              <tr key={volumeName}>
+              <tr key={uuid()}>
                 <th>
                   <a href={`/volumes/${volume.Name}/details`} onClick={push}>
                     {volume.Name}
@@ -60,15 +61,19 @@ const VolumeTable = ({ volumes, push }) => (
                 </td>
               </tr>
             );
-          }) : ''
+          }) : <tr />
       }
     </tbody>
   </Table>
 );
 
 VolumeTable.propTypes = {
-  volumes: PropTypes.shape({}).isRequired,
+  volumes: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+};
+
+VolumeTable.defaultProps = {
+  volumes: {},
 };
 
 export default VolumeTable;

@@ -12,7 +12,9 @@ class ContainerLogs extends Base {
 
   render() {
     return (
-      <DetailContainerBase match={this.props.match} />
+      <DetailContainerBase match={this.props.match} push={this.pushNavigation}>
+        <div id="terminal-container" dangerouslySetInnerHTML={{ __html: this.props.logs.replace(/�/g, '<br />') }} />
+      </DetailContainerBase>
     );
   }
 }

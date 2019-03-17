@@ -3,7 +3,10 @@ A UI created to consume the docker api and give insight into what's going on in 
 
 ### ToDo
 
-- testing
+- add tests
 - chart statistics
-- real time updates to UI
+- real time updates to UI using docker event streams
 - swarm support completion
+- beautify logs
+- show user resulting docker cli commands
+- travis integration

@@ -1,10 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import DetailContainerSubnav from '../../subcomponents/subnavs/detail/container_detail_subnav.jsx';
+import { CONTAINER_EVENTS_RETRIEVED } from '../../../types/container.jsx';
+import getEvents from '../../../actions/events_service.jsx';
+
 
 class DetailContainerDetailContainer extends Base {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getEvents('container', CONTAINER_EVENTS_RETRIEVED);
+  }
 
   render() {
     return (
@@ -23,4 +30,11 @@ class DetailContainerDetailContainer extends Base {
   }
 }
 
-export default DetailContainerDetailContainer;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getEvents,
+}, dispatch);
+
+module.exports = connect(
+  null,
+  mapDispatchToProps,
+)(DetailContainerDetailContainer);

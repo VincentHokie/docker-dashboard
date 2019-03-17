@@ -1,11 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import VolumeSubnav from '../../subcomponents/subnavs/detail/volume_detail_subnav.jsx';
+import getEvents from '../../../actions/events_service.jsx';
+import { VOLUME_EVENTS_RETRIEVED } from '../../../types/volume.jsx';
 
 
 class VolumeDetailContainer extends Base {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getEvents('volume', VOLUME_EVENTS_RETRIEVED);
+  }
 
   render() {
     return (
@@ -21,4 +27,11 @@ class VolumeDetailContainer extends Base {
   }
 }
 
-export default VolumeDetailContainer;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getEvents,
+}, dispatch);
+
+module.exports = connect(
+  null,
+  mapDispatchToProps,
+)(VolumeDetailContainer);

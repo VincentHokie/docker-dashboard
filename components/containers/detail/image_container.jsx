@@ -1,11 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import ImageSubnav from '../../subcomponents/subnavs/detail/images_detail_subnav.jsx';
+import { IMAGE_EVENTS_RETRIEVED } from '../../../types/image.jsx';
+import getEvents from '../../../actions/events_service.jsx';
 
 
 class ImageDetailContainer extends Base {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getEvents('image', IMAGE_EVENTS_RETRIEVED);
+  }
 
   render() {
     return (
@@ -21,4 +27,11 @@ class ImageDetailContainer extends Base {
   }
 }
 
-export default ImageDetailContainer;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getEvents,
+}, dispatch);
+
+module.exports = connect(
+  null,
+  mapDispatchToProps,
+)(ImageDetailContainer);

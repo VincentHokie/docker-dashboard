@@ -13,6 +13,7 @@ import secretReducer from './reducers/secret.jsx';
 import serviceReducer from './reducers/service.jsx';
 import volumeReducer from './reducers/volume.jsx';
 import errorReducer from './reducers/error.jsx';
+import eventsReducer from './reducers/events.jsx';
 
 const reducer = combineReducers({
   baseReducer,
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   serviceReducer,
   volumeReducer,
   errorReducer,
+  eventsReducer,
 });
 
 const store = createStore(

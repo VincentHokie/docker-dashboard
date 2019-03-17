@@ -1,11 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import NetworkSubnav from '../../subcomponents/subnavs/detail/network_detail_subnav.jsx';
+import getEvents from '../../../actions/events_service.jsx';
+import { NETWORK_EVENTS_RETRIEVED } from '../../../types/network.jsx';
 
 
 class NetworkDetailContainer extends Base {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getEvents('network', NETWORK_EVENTS_RETRIEVED);
+  }
 
   render() {
     return (
@@ -21,4 +27,11 @@ class NetworkDetailContainer extends Base {
   }
 }
 
-export default NetworkDetailContainer;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getEvents,
+}, dispatch);
+
+module.exports = connect(
+  null,
+  mapDispatchToProps,
+)(NetworkDetailContainer);

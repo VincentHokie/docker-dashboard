@@ -6,6 +6,7 @@ import SideBar from '../miscellaneous/sidebar.jsx';
 import Base from './base.jsx';
 import ErrorPage from '../miscellaneous/error.jsx';
 
+
 function DashboardWrapper(Component, passedActions, passedState) {
   class BaseFilter extends Base {
     render() {

@@ -1,8 +1,6 @@
-import ndjsonStream from 'can-ndjson-stream';
 import {
   CONTAINERS_RETRIEVED,
   CONTAINER_DETAILS_RETRIEVED,
-  CONTAINER_EVENTS_RETRIEVED,
   CONTAINER_LOGS_RETRIEVED,
   CONTAINER_PROCESSES_RETRIEVED,
   CONTAINER_STATS_RETRIEVED,
@@ -108,31 +106,6 @@ const getContainerLogs = containerId => (
       });
     }));
 
-const getContainerEvents = () => (
-  (dispatch) => {
-    fetch('http://localhost:2345/events?filters={"type":{"container":true}}')
-      .then(response => ndjsonStream(response.body))
-      .then((exampleStream) => {
-        let read;
-        exampleStream.getReader().read().then(read = (result) => {
-          if (result.done) return;
-          dispatch({
-            type: CONTAINER_EVENTS_RETRIEVED,
-            payload: result.value,
-          });
-
-          exampleStream.getReader().read().then(read);
-        });
-      }).catch((error) => {
-        const userMessage = error.data.message;
-        dispatch({
-          type: ERROR_PAGE_DISPLAY,
-          payload: error,
-          userMessage,
-        });
-      });
-  });
-
 const getContainerStats = containerId => (
   dispatch =>
     axios({
@@ -158,7 +131,6 @@ const getContainerStats = containerId => (
 const ContainerService = {
   getContainers,
   getContainerDetail,
-  getContainerEvents,
   getContainerLogs,
   getContainerStats,
   getContainerProcesses,

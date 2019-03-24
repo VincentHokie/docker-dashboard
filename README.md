@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/VincentHokie/docker-dashboard.svg?branch=v1.38)](https://travis-ci.org/VincentHokie/docker-dashboard)
+
 # Docker Dashboard
 
 I created this in response to feeback I've gotten over several months from my team wanting visibility into a dockerized local environment without noise on the terminal or needing to know the docker cli well.
@@ -52,8 +54,7 @@ At the moment I've only really done my research on the MacOS, but feel free to c
 - swarm support completion
 - beautify logs
 - show user resulting docker cli commands
-- travis integration
-- complete search functionality
+- coveralls integration
 
 ## Note
 

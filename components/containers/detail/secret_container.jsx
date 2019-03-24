@@ -10,7 +10,11 @@ import { SECRET_EVENTS_RETRIEVED } from '../../../types/secret.jsx';
 
 class SecretDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('secret', SECRET_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      'secret',
+      SECRET_EVENTS_RETRIEVED,
+      this.props.match.params.secretId,
+    );
   }
 
   render() {

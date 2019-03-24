@@ -34,9 +34,10 @@ export default (state = initState, action) => {
         logs: action.payload,
       };
     case CONTAINER_EVENTS_RETRIEVED:
+      state.events.push(action.payload);
       return {
         ...state,
-        events: action.payload,
+        events: state.events,
       };
     case CONTAINER_DETAILS_RETRIEVED:
       return {

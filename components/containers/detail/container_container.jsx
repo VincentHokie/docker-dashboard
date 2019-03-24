@@ -10,7 +10,11 @@ import getEvents from '../../../actions/events_service.jsx';
 
 class DetailContainerDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('container', CONTAINER_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      'container',
+      CONTAINER_EVENTS_RETRIEVED,
+      this.props.match.params.containerId,
+    );
   }
 
   render() {

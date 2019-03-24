@@ -10,7 +10,11 @@ import getEvents from '../../../actions/events_service.jsx';
 
 class ImageDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('image', IMAGE_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      'image',
+      IMAGE_EVENTS_RETRIEVED,
+      this.props.match.params.imageId,
+    );
   }
 
   render() {

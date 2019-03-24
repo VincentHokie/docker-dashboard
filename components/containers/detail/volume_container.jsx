@@ -10,7 +10,11 @@ import { VOLUME_EVENTS_RETRIEVED } from '../../../types/volume.jsx';
 
 class VolumeDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('volume', VOLUME_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      'volume',
+      VOLUME_EVENTS_RETRIEVED,
+      this.props.match.params.volumeId,
+    );
   }
 
   render() {

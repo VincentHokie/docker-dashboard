@@ -10,7 +10,11 @@ import { NETWORK_EVENTS_RETRIEVED } from '../../../types/network.jsx';
 
 class NetworkDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('network', NETWORK_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      'network',
+      NETWORK_EVENTS_RETRIEVED,
+      this.props.match.params.networkId,
+    );
   }
 
   render() {

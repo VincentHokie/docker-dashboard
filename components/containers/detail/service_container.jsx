@@ -10,7 +10,11 @@ import { SERVICE_EVENTS_RETRIEVED } from '../../../types/service.jsx';
 
 class ServiceDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('service', SERVICE_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      'service',
+      SERVICE_EVENTS_RETRIEVED,
+      this.props.match.params.serviceId,
+    );
   }
 
   render() {

@@ -6,9 +6,10 @@ import {
 import {
   ERROR_PAGE_DISPLAY,
 } from '../types/error.jsx';
+import { BASE_URL } from '../axios/constants.jsx';
 
 
-const getEvents = (eventType, EVENTS_RECEIVED) => (
+const getEvents = (eventType, EVENTS_RECEIVED, objectName) => (
   (dispatch, getState) => {
     const { stream } = getState().eventsReducer;
     if (stream[eventType]) return;
@@ -28,22 +29,23 @@ const getEvents = (eventType, EVENTS_RECEIVED) => (
       payload: { [eventType]: controller },
     });
 
-    fetch(`http://localhost:2345/events?filters={"type":{"${eventType}":true}}`, {
+    fetch(`${BASE_URL}/events?filters={"type":{"${eventType}":true},"${eventType}":{"${objectName}":true}}`, {
       method: 'get',
       signal,
     })
       .then(response => ndjsonStream(response.body))
       .then((exampleStream) => {
-        let read;
-        exampleStream.getReader().read().then(read = (result) => {
-          if (result.done) return;
-          dispatch({
-            type: EVENTS_RECEIVED,
-            payload: result.value,
+        const reader = exampleStream.getReader();
+        const doRead = () =>
+          reader.read().then(({ done, value }) => {
+            if (done) return;
+            dispatch({
+              type: EVENTS_RECEIVED,
+              payload: value,
+            });
+            doRead();
           });
-
-          exampleStream.getReader().read().then(read);
-        });
+        doRead();
       }).catch((error) => {
         const userMessage = error.data.message;
         dispatch({

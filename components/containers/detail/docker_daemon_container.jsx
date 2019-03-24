@@ -10,7 +10,11 @@ import { DOCKER_DAEMON_EVENTS_RETRIEVED } from '../../../types/docker-daemon.jsx
 
 class DockerDaemonDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('', DOCKER_DAEMON_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      '',
+      DOCKER_DAEMON_EVENTS_RETRIEVED,
+      this.props.match.params.dockerDaemonId,
+    );
   }
 
   render() {

@@ -10,7 +10,11 @@ import { NODE_EVENTS_RETRIEVED } from '../../../types/node.jsx';
 
 class NodeDetailContainer extends Base {
   componentDidMount() {
-    this.props.getEvents('node', NODE_EVENTS_RETRIEVED);
+    this.props.getEvents(
+      'node',
+      NODE_EVENTS_RETRIEVED,
+      this.props.match.params.nodeId,
+    );
   }
 
   render() {

@@ -22,7 +22,8 @@ const getImages = () => (
 
       const imageData = {};
       for (let i = 0; i < data.length; i += 1) {
-        imageData[data[i].RepoTags[0]] = data[i];
+        const imageName = data[i].RepoTags ? data[i].RepoTags[0] : data[i].Id;
+        imageData[imageName] = data[i];
       }
 
       dispatch({

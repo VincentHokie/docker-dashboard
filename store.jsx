@@ -1,8 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import baseReducer from './reducers/notification.jsx';
-import modalReducer from './reducers/modal.jsx';
 import containerReducer from './reducers/container.jsx';
 import configReducer from './reducers/config.jsx';
 import dockerDaemonReducer from './reducers/docker-daemon.jsx';
@@ -16,8 +14,6 @@ import errorReducer from './reducers/error.jsx';
 import eventsReducer from './reducers/events.jsx';
 
 const reducer = combineReducers({
-  baseReducer,
-  modalReducer,
   containerReducer,
   configReducer,
   dockerDaemonReducer,

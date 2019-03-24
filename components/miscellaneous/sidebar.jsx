@@ -69,14 +69,7 @@ class SideBar extends Base {
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
-const mapStateToProps = state => ({
-  form: state.modalReducer.form,
-  error: state.modalReducer.error,
-  onSubmit: state.modalReducer.onSubmit,
-  show: state.modalReducer.show,
-  modalTitle: state.modalReducer.modalTitle,
-  buttonLabel: state.modalReducer.buttonLabel,
-});
+const mapStateToProps = () => ({});
 
 export default connect(
   mapStateToProps,

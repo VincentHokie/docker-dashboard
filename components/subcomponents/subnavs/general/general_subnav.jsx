@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, Control, Input } from 'react-bulma-components/lib/components/form';
+import { Field, Control } from 'react-bulma-components/lib/components/form';
 import Level from 'react-bulma-components/lib/components/level';
 import Button from 'react-bulma-components/lib/components/button';
 import Icon from 'react-bulma-components/lib/components/icon';
@@ -11,7 +11,12 @@ const GeneralSubnav = ({ searchWord, search }) => (
       <Level.Item>
         <Field kind="addons">
           <Control>
-            <Input placeholder={`Find a ${searchWord}`} onChange={search} />
+            <input
+              className="input"
+              type="text"
+              placeholder={`Find a ${searchWord}`}
+              onChange={search}
+            />
           </Control>
           <Control>
             <Button renderAs="button">Search</Button>

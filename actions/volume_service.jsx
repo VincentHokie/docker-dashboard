@@ -1,6 +1,7 @@
 import {
   VOLUMES_RETRIEVED,
   VOLUME_DETAILS_RETRIEVED,
+  VOLUME_SEARCH_STRING_CHANGED,
 } from '../types/volume.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -59,9 +60,18 @@ const getVolumeDetail = volumeId => (
       });
     }));
 
+const volumeeSearch = event => (
+  dispatch => (
+    dispatch({
+      type: VOLUME_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 const VolumeService = {
   getVolumes,
   getVolumeDetail,
+  volumeeSearch,
 };
 
 export default VolumeService;

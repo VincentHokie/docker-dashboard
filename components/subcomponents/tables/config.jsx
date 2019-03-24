@@ -3,7 +3,7 @@ import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-const ConfigTable = ({ configs }) => (
+const ConfigTable = ({ configs, searchString }) => (
   <Table>
     <thead>
       <tr>
@@ -43,21 +43,25 @@ const ConfigTable = ({ configs }) => (
         configs ?
           Object.keys(configs).map((configName) => {
             const config = configs[configName];
+            const regexStrings = searchString.trim().split(' ').join('|').trim('|');
+            const regex = new RegExp(regexStrings, 'i');
+
             return (
-              <tr key={uuid()}>
-                <th>
-                  { config.Spec.Name }
-                </th>
-                <td>
-                  { config.Version }
-                </td>
-                <td>
-                  { config.CreatedAt }
-                </td>
-                <td>
-                  { config.UpdatedAt }
-                </td>
-              </tr>
+              regex.test(configName) || (!searchString || searchString.length === 0) ?
+                <tr key={uuid()}>
+                  <th>
+                    {config.Spec.Name}
+                  </th>
+                  <td>
+                    {config.Version}
+                  </td>
+                  <td>
+                    {config.CreatedAt}
+                  </td>
+                  <td>
+                    {config.UpdatedAt}
+                  </td>
+                </tr> : null
             );
           }) : <tr />
       }
@@ -67,10 +71,12 @@ const ConfigTable = ({ configs }) => (
 
 ConfigTable.propTypes = {
   configs: PropTypes.shape({}),
+  searchString: PropTypes.string,
 };
 
 ConfigTable.defaultProps = {
   configs: {},
+  searchString: '',
 };
 
 export default ConfigTable;

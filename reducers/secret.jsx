@@ -3,6 +3,7 @@ import {
   SECRET_EVENTS_RETRIEVED,
   SECRET_DETAILS_RETRIEVED,
   SECRET_STATS_RETRIEVED,
+  SECRET_SEARCH_STRING_CHANGED,
 } from '../types/secret.jsx';
 
 const initState = {
@@ -10,6 +11,7 @@ const initState = {
   events: [],
   details: {},
   stats: {},
+  searchString: '',
 };
 
 export default (state = initState, action) => {
@@ -33,6 +35,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         stats: action.payload,
+      };
+    case SECRET_SEARCH_STRING_CHANGED:
+      return {
+        ...state,
+        searchString: action.payload,
       };
     default:
       return state;

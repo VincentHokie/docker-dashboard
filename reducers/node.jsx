@@ -3,6 +3,7 @@ import {
   NODE_EVENTS_RETRIEVED,
   NODE_DETAILS_RETRIEVED,
   NODE_STATS_RETRIEVED,
+  NODE_SEARCH_STRING_CHANGED,
 } from '../types/node.jsx';
 
 const initState = {
@@ -10,6 +11,7 @@ const initState = {
   events: [],
   details: {},
   stats: {},
+  searchString: '',
 };
 
 export default (state = initState, action) => {
@@ -33,6 +35,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         stats: action.payload,
+      };
+    case NODE_SEARCH_STRING_CHANGED:
+      return {
+        ...state,
+        searchString: action.payload,
       };
     default:
       return state;

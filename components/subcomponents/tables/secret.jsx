@@ -3,7 +3,7 @@ import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-const SecretTable = ({ secrets, push }) => (
+const SecretTable = ({ secrets, push, searchString }) => (
   <Table>
     <thead>
       <tr>
@@ -37,20 +37,24 @@ const SecretTable = ({ secrets, push }) => (
         secrets ?
           Object.keys(secrets).map((secretId) => {
             const secret = secrets[secretId];
+            const regexStrings = searchString.trim().split(' ').join('|').trim('|');
+            const regex = new RegExp(regexStrings, 'i');
+
             return (
-              <tr key={uuid()}>
-                <th>
-                  <a href={`/secrets/${secret.ID}/details`} onClick={push}>
-                    {secret.Spec.Name}
-                  </a>
-                </th>
-                <td>
-                  {secret.CreatedAt}
-                </td>
-                <td>
-                  {secret.UpdatedAt}
-                </td>
-              </tr>
+              regex.test(secretId) || (!searchString || searchString.length === 0) ?
+                <tr key={uuid()}>
+                  <th>
+                    <a href={`/secrets/${secret.ID}/details`} onClick={push}>
+                      {secret.Spec.Name}
+                    </a>
+                  </th>
+                  <td>
+                    {secret.CreatedAt}
+                  </td>
+                  <td>
+                    {secret.UpdatedAt}
+                  </td>
+                </tr> : null
             );
           }) : <tr />
       }
@@ -61,10 +65,12 @@ const SecretTable = ({ secrets, push }) => (
 SecretTable.propTypes = {
   secrets: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
 };
 
 SecretTable.defaultProps = {
   secrets: {},
+  searchString: '',
 };
 
 export default SecretTable;

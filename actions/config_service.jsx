@@ -1,5 +1,6 @@
 import {
   CONFIGS_RETRIEVED,
+  CONFIG_SEARCH_STRING_CHANGED,
 } from '../types/config.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -39,8 +40,17 @@ const getConfigs = () =>
       });
     });
 
+const configSearch = event => (
+  dispatch => (
+    dispatch({
+      type: CONFIG_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 const ConfigService = {
   getConfigs,
+  configSearch,
 };
 
 export default ConfigService;

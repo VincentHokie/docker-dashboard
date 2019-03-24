@@ -3,6 +3,7 @@ import {
   CONFIG_EVENTS_RETRIEVED,
   CONFIG_DETAILS_RETRIEVED,
   CONFIG_STATS_RETRIEVED,
+  CONFIG_SEARCH_STRING_CHANGED,
 } from '../types/config.jsx';
 
 const initState = {
@@ -10,6 +11,7 @@ const initState = {
   events: [],
   details: {},
   stats: {},
+  searchString: '',
 };
 
 export default (state = initState, action) => {
@@ -33,6 +35,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         stats: action.payload,
+      };
+    case CONFIG_SEARCH_STRING_CHANGED:
+      return {
+        ...state,
+        searchString: action.payload,
       };
     default:
       return state;

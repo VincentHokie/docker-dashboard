@@ -3,7 +3,7 @@ import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-const VolumeTable = ({ volumes, push }) => (
+const VolumeTable = ({ volumes, push, searchString }) => (
   <Table>
     <thead>
       <tr>
@@ -43,23 +43,27 @@ const VolumeTable = ({ volumes, push }) => (
         volumes ?
           Object.keys(volumes).map((volumeName) => {
             const volume = volumes[volumeName];
+            const regexStrings = searchString.trim().split(' ').join('|').trim('|');
+            const regex = new RegExp(regexStrings, 'i');
+
             return (
-              <tr key={uuid()}>
-                <th>
-                  <a href={`/volumes/${volume.Name}/details`} onClick={push}>
-                    {volume.Name}
-                  </a>
-                </th>
-                <td>
-                  {volume.Driver}
-                </td>
-                <td>
-                  {volume.CreatedAt}
-                </td>
-                <td>
-                  {volume.Scope}
-                </td>
-              </tr>
+              regex.test(volumeName) || (!searchString || searchString.length === 0) ?
+                <tr key={uuid()}>
+                  <th>
+                    <a href={`/volumes/${volume.Name}/details`} onClick={push}>
+                      {volume.Name}
+                    </a>
+                  </th>
+                  <td>
+                    {volume.Driver}
+                  </td>
+                  <td>
+                    {volume.CreatedAt}
+                  </td>
+                  <td>
+                    {volume.Scope}
+                  </td>
+                </tr> : null
             );
           }) : <tr />
       }
@@ -70,10 +74,12 @@ const VolumeTable = ({ volumes, push }) => (
 VolumeTable.propTypes = {
   volumes: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
 };
 
 VolumeTable.defaultProps = {
   volumes: {},
+  searchString: '',
 };
 
 export default VolumeTable;

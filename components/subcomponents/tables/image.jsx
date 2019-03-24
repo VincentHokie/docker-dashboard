@@ -3,7 +3,7 @@ import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-const ImageTable = ({ images, push }) => (
+const ImageTable = ({ images, push, searchString }) => (
   <Table>
     <thead>
       <tr>
@@ -49,26 +49,29 @@ const ImageTable = ({ images, push }) => (
         images ?
           Object.keys(images).map((imageName) => {
             const image = images[imageName];
+            const regexStrings = searchString.trim().split(' ').join('|').trim('|');
+            const regex = new RegExp(regexStrings, 'i');
             return (
-              <tr key={uuid()}>
-                <th>
-                  <a href={`/images/${image.RepoTags[0]}/details`} onClick={push}>
-                    {image.RepoTags[0]}
-                  </a>
-                </th>
-                <td>
-                  {image.Containers}
-                </td>
-                <td>
-                  {image.SharedSize}
-                </td>
-                <td>
-                  {image.Size}
-                </td>
-                <td>
-                  {image.Created}
-                </td>
-              </tr>
+              regex.test(imageName) || (!searchString || searchString.length === 0) ?
+                <tr key={uuid()}>
+                  <th>
+                    <a href={`/images/${imageName}/details`} onClick={push}>
+                      {imageName}
+                    </a>
+                  </th>
+                  <td>
+                    {image.Containers}
+                  </td>
+                  <td>
+                    {image.SharedSize}
+                  </td>
+                  <td>
+                    {image.Size}
+                  </td>
+                  <td>
+                    {image.Created}
+                  </td>
+                </tr> : null
             );
           }) : <tr />
       }
@@ -79,10 +82,12 @@ const ImageTable = ({ images, push }) => (
 ImageTable.propTypes = {
   images: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
 };
 
 ImageTable.defaultProps = {
   images: {},
+  searchString: '',
 };
 
 export default ImageTable;

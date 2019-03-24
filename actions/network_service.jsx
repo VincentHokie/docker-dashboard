@@ -1,6 +1,7 @@
 import {
   NETWORKS_RETRIEVED,
   NETWORK_DETAILS_RETRIEVED,
+  NETWORK_SEARCH_STRING_CHANGED,
 } from '../types/network.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -58,9 +59,18 @@ const getNetworkDetail = networkId => (
       });
     }));
 
+const networkSearch = event => (
+  dispatch => (
+    dispatch({
+      type: NETWORK_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 const NetworkService = {
   getNetworks,
   getNetworkDetail,
+  networkSearch,
 };
 
 export default NetworkService;

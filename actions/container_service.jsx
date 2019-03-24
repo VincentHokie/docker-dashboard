@@ -4,6 +4,7 @@ import {
   CONTAINER_LOGS_RETRIEVED,
   CONTAINER_PROCESSES_RETRIEVED,
   CONTAINER_STATS_RETRIEVED,
+  CONTAINER_SEARCH_STRING_CHANGED,
 } from '../types/container.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -128,12 +129,21 @@ const getContainerStats = containerId => (
       });
     }));
 
+const containerSearch = event => (
+  dispatch => (
+    dispatch({
+      type: CONTAINER_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 const ContainerService = {
   getContainers,
   getContainerDetail,
   getContainerLogs,
   getContainerStats,
   getContainerProcesses,
+  containerSearch,
 };
 
 export default ContainerService;

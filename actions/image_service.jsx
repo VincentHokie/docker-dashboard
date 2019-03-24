@@ -2,6 +2,7 @@ import {
   IMAGES_RETRIEVED,
   IMAGE_DETAILS_RETRIEVED,
   IMAGE_HISTORY_RETRIEVED,
+  IMAGE_SEARCH_STRING_CHANGED,
 } from '../types/image.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -81,11 +82,20 @@ const getImageHistory = imageId => (
       });
     }));
 
+const imageSearch = event => (
+  dispatch => (
+    dispatch({
+      type: IMAGE_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 
 const ImageService = {
   getImages,
   getImageDetail,
   getImageHistory,
+  imageSearch,
 };
 
 export default ImageService;

@@ -3,7 +3,7 @@ import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-const NodeTable = ({ nodes, push }) => (
+const NodeTable = ({ nodes, push, searchString }) => (
   <Table>
     <thead>
       <tr>
@@ -54,29 +54,33 @@ const NodeTable = ({ nodes, push }) => (
         nodes ?
           Object.keys(nodes).map((nodeName) => {
             const node = nodes[nodeName];
+            const regexStrings = searchString.trim().split(' ').join('|').trim('|');
+            const regex = new RegExp(regexStrings, 'i');
+
             return (
-              <tr key={uuid()}>
-                <th>
-                  <a href={`/nodes/${node.Name}/details`} onClick={push}>
-                    {node.Spec.Name}
-                  </a>
-                </th>
-                <td>
-                  {node.Spec.Availability}
-                </td>
-                <td>
-                  {node.Spec.Role}
-                </td>
-                <td>
-                  {node.Status.State}
-                </td>
-                <td>
-                  {node.CreatedAt}
-                </td>
-                <td>
-                  {node.UpdatedAt}
-                </td>
-              </tr>
+              regex.test(nodeName) || (!searchString || searchString.length === 0) ?
+                <tr key={uuid()}>
+                  <th>
+                    <a href={`/nodes/${node.Name}/details`} onClick={push}>
+                      {node.Spec.Name}
+                    </a>
+                  </th>
+                  <td>
+                    {node.Spec.Availability}
+                  </td>
+                  <td>
+                    {node.Spec.Role}
+                  </td>
+                  <td>
+                    {node.Status.State}
+                  </td>
+                  <td>
+                    {node.CreatedAt}
+                  </td>
+                  <td>
+                    {node.UpdatedAt}
+                  </td>
+                </tr> : null
             );
           }) : <tr />
       }
@@ -87,10 +91,12 @@ const NodeTable = ({ nodes, push }) => (
 NodeTable.propTypes = {
   nodes: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
 };
 
 NodeTable.defaultProps = {
   nodes: {},
+  searchString: '',
 };
 
 export default NodeTable;

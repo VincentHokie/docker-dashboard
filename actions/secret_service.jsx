@@ -1,6 +1,7 @@
 import {
   SECRETS_RETRIEVED,
   SECRET_DETAILS_RETRIEVED,
+  SECRET_SEARCH_STRING_CHANGED,
 } from '../types/secret.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -66,9 +67,18 @@ const getSecretDetail = secretId => (
       });
     }));
 
+const secretSearch = event => (
+  dispatch => (
+    dispatch({
+      type: SECRET_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 const SecretService = {
   getSecrets,
   getSecretDetail,
+  secretSearch,
 };
 
 export default SecretService;

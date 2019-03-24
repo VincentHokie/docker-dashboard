@@ -3,7 +3,7 @@ import Table from 'react-bulma-components/lib/components/table';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-const ServiceTable = ({ services, push }) => (
+const ServiceTable = ({ services, push, searchString }) => (
   <Table>
     <thead>
       <tr>
@@ -48,26 +48,30 @@ const ServiceTable = ({ services, push }) => (
         services ?
           Object.keys(services).map((serviceName) => {
             const service = services[serviceName];
+            const regexStrings = searchString.trim().split(' ').join('|').trim('|');
+            const regex = new RegExp(regexStrings, 'i');
+
             return (
-              <tr key={uuid()}>
-                <th>
-                  <a href={`/services/${serviceName}/details`} onClick={push}>
-                    {serviceName}
-                  </a>
-                </th>
-                <td>
-                  {service.Spec.ContainerSpec.Image}
-                </td>
-                <td>
-                  {service.Spec.Mode.Replicated.Replicas}
-                </td>
-                <td>
-                  {service.CreatedAt}
-                </td>
-                <td>
-                  {service.UpdatedAt}
-                </td>
-              </tr>
+              regex.test(serviceName) || (!searchString || searchString.length === 0) ?
+                <tr key={uuid()}>
+                  <th>
+                    <a href={`/services/${serviceName}/details`} onClick={push}>
+                      {serviceName}
+                    </a>
+                  </th>
+                  <td>
+                    {service.Spec.ContainerSpec.Image}
+                  </td>
+                  <td>
+                    {service.Spec.Mode.Replicated.Replicas}
+                  </td>
+                  <td>
+                    {service.CreatedAt}
+                  </td>
+                  <td>
+                    {service.UpdatedAt}
+                  </td>
+                </tr> : null
             );
           }) : <tr />
       }
@@ -78,10 +82,12 @@ const ServiceTable = ({ services, push }) => (
 ServiceTable.propTypes = {
   services: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
 };
 
 ServiceTable.defaultProps = {
   services: {},
+  searchString: '',
 };
 
 module.exports = ServiceTable;

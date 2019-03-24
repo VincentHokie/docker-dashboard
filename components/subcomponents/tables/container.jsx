@@ -4,7 +4,7 @@ import Icon from 'react-bulma-components/lib/components/icon';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-const ContainerTable = ({ containers, push }) => (
+const ContainerTable = ({ containers, push, searchString }) => (
   <Table>
     <thead>
       <tr>
@@ -44,25 +44,29 @@ const ContainerTable = ({ containers, push }) => (
         containers ?
           Object.keys(containers).map((containerName) => {
             const container = containers[containerName];
+            const regexStrings = searchString.trim().split(' ').join('|').trim('|');
+            const regex = new RegExp(regexStrings, 'i');
+
             return (
-              <tr key={uuid()}>
-                <th>
-                  <a href={`/containers${container.Names[0]}/details`} onClick={push}>
-                    { container.Names[0] }
-                  </a>
-                </th>
-                <td>
-                  { container.State }
-                </td>
-                <td>
-                  { container.Status }
-                </td>
-                <td>
-                  <Icon>
-                    <span className="fas fa-bell" />
-                  </Icon>
-                </td>
-              </tr>
+              regex.test(containerName) || (!searchString || searchString.length === 0) ?
+                <tr key={uuid()}>
+                  <th>
+                    <a href={`/containers${container.Names[0]}/details`} onClick={push}>
+                      {container.Names[0]}
+                    </a>
+                  </th>
+                  <td>
+                    {container.State}
+                  </td>
+                  <td>
+                    {container.Status}
+                  </td>
+                  <td>
+                    <Icon>
+                      <span className="fas fa-bell" />
+                    </Icon>
+                  </td>
+                </tr> : null
             );
           }) : <tr />
       }
@@ -73,10 +77,12 @@ const ContainerTable = ({ containers, push }) => (
 ContainerTable.propTypes = {
   containers: PropTypes.shape({}),
   push: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
 };
 
 ContainerTable.defaultProps = {
   containers: {},
+  searchString: '',
 };
 
 export default ContainerTable;

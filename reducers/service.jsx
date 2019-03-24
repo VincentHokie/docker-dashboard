@@ -4,6 +4,7 @@ import {
   SERVICE_EVENTS_RETRIEVED,
   SERVICE_DETAILS_RETRIEVED,
   SERVICE_STATS_RETRIEVED,
+  SERVICE_SEARCH_STRING_CHANGED,
 } from '../types/service.jsx';
 
 const initState = {
@@ -12,6 +13,7 @@ const initState = {
   events: [],
   details: {},
   stats: {},
+  searchString: '',
 };
 
 export default (state = initState, action) => {
@@ -40,6 +42,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         stats: action.payload,
+      };
+    case SERVICE_SEARCH_STRING_CHANGED:
+      return {
+        ...state,
+        searchString: action.payload,
       };
     default:
       return state;

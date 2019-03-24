@@ -16,10 +16,17 @@ class SecretContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <GeneralSubnav searchWord="secret" search={() => {}} />
+          <GeneralSubnav
+            searchWord="secret"
+            search={this.props.secretSearch}
+          />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
-          <SecretTable secrets={this.props.secrets} push={this.pushNavigation} />
+          <SecretTable
+            secrets={this.props.secrets}
+            push={this.pushNavigation}
+            searchString={this.props.searchString}
+          />
         </Columns.Column>
       </Columns>
     );
@@ -31,5 +38,6 @@ export default DashboardWrapper(
   { ...SecretsService },
   state => ({
     secrets: state.secretReducer.secrets,
+    searchString: state.secretReducer.searchString,
   }),
 );

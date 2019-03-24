@@ -16,10 +16,17 @@ class ServiceContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <GeneralSubnav searchWord="service" search={() => {}} />
+          <GeneralSubnav
+            searchWord="service"
+            search={this.props.serviceSearch}
+          />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
-          <ServiceTable secrets={this.props.services} push={this.pushNavigation} />
+          <ServiceTable
+            secrets={this.props.services}
+            push={this.pushNavigation}
+            searchString={this.props.searchString}
+          />
         </Columns.Column>
       </Columns>
     );
@@ -31,5 +38,6 @@ export default DashboardWrapper(
   { ...ServiceService },
   state => ({
     services: state.serviceReducer.services,
+    searchString: state.serviceReducer.searchString,
   }),
 );

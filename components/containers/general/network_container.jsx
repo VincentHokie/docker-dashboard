@@ -16,12 +16,19 @@ class NetworkContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <GeneralSubnav searchWord="network" search={() => {}} />
+          <GeneralSubnav
+            searchWord="network"
+            search={this.props.networkSearch}
+          />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           {
             this.props.networks ?
-              <NetworkTable networks={this.props.networks} push={this.pushNavigation} /> : ''
+              <NetworkTable
+                networks={this.props.networks}
+                push={this.pushNavigation}
+                searchString={this.props.searchString}
+              /> : ''
           }
         </Columns.Column>
       </Columns>
@@ -34,5 +41,6 @@ export default DashboardWrapper(
   { ...NetworkService },
   state => ({
     networks: state.networkReducer.networks,
+    searchString: state.networkReducer.searchString,
   }),
 );

@@ -1,7 +1,8 @@
 import {
-  SECRETS_RETRIEVED,
-  SECRET_DETAILS_RETRIEVED,
-} from '../types/secret.jsx';
+  NODES_RETRIEVED,
+  NODE_DETAILS_RETRIEVED,
+  NODE_SEARCH_STRING_CHANGED,
+} from '../types/node.jsx';
 import {
   ERROR_PAGE_CLEAR,
   ERROR_PAGE_DISPLAY,
@@ -24,7 +25,7 @@ const getNodes = () => (
       }
 
       dispatch({
-        type: SECRETS_RETRIEVED,
+        type: NODES_RETRIEVED,
         payload: containerData,
       });
     }).catch((error) => {
@@ -50,7 +51,7 @@ const getNodeDetail = nodeId => (
         type: ERROR_PAGE_CLEAR,
       });
       dispatch({
-        type: SECRET_DETAILS_RETRIEVED,
+        type: NODE_DETAILS_RETRIEVED,
         payload: data,
       });
     }).catch((error) => {
@@ -66,9 +67,18 @@ const getNodeDetail = nodeId => (
       });
     }));
 
+const nodeSearch = event => (
+  dispatch => (
+    dispatch({
+      type: NODE_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 const NodeService = {
   getNodes,
   getNodeDetail,
+  nodeSearch,
 };
 
 export default NodeService;

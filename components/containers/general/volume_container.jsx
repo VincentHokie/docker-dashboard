@@ -16,12 +16,19 @@ class VolumeContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <GeneralSubnav searchWord="volume" search={() => {}} />
+          <GeneralSubnav
+            searchWord="volume"
+            search={this.props.volumeSearch}
+          />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
           {
             this.props.volumes ?
-              <VolumeTable volumes={this.props.volumes} push={this.pushNavigation} /> : ''
+              <VolumeTable
+                volumes={this.props.volumes}
+                push={this.pushNavigation}
+                searchString={this.props.searchString}
+              /> : ''
           }
         </Columns.Column>
       </Columns>
@@ -34,5 +41,6 @@ export default DashboardWrapper(
   { ...VolumeService },
   state => ({
     volumes: state.volumeReducer.volumes,
+    searchString: state.volumeReducer.searchString,
   }),
 );

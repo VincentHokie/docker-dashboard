@@ -4,6 +4,7 @@ import {
   IMAGE_DETAILS_RETRIEVED,
   IMAGE_STATS_RETRIEVED,
   IMAGE_HISTORY_RETRIEVED,
+  IMAGE_SEARCH_STRING_CHANGED,
 } from '../types/image.jsx';
 
 const initState = {
@@ -12,6 +13,7 @@ const initState = {
   details: {},
   stats: {},
   imageHistory: [],
+  searchString: '',
 };
 
 export default (state = initState, action) => {
@@ -40,6 +42,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         imageHistory: action.payload,
+      };
+    case IMAGE_SEARCH_STRING_CHANGED:
+      return {
+        ...state,
+        searchString: action.payload,
       };
     default:
       return state;

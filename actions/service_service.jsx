@@ -2,6 +2,7 @@ import {
   SERVICES_RETRIEVED,
   SERVICE_DETAILS_RETRIEVED,
   SERVICE_LOGS_RETRIEVED,
+  SERVICE_SEARCH_STRING_CHANGED,
 } from '../types/service.jsx';
 import {
   ERROR_PAGE_CLEAR,
@@ -84,10 +85,19 @@ const getServiceLogs = serviceId => (
       });
     }));
 
+const serviceSearch = event => (
+  dispatch => (
+    dispatch({
+      type: SERVICE_SEARCH_STRING_CHANGED,
+      payload: event.target.value,
+    })
+  ));
+
 const ServiceService = {
   getServices,
   getServiceDetail,
   getServiceLogs,
+  serviceSearch,
 };
 
 export default ServiceService;

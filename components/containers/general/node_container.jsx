@@ -16,10 +16,17 @@ class NodeContainer extends Base {
     return (
       <Columns>
         <Columns.Column>
-          <GeneralSubnav searchWord="node" search={() => {}} />
+          <GeneralSubnav
+            searchWord="node"
+            search={this.props.nodeSearch}
+          />
         </Columns.Column>
         <Columns.Column className="tile is-ancestor is-12" style={{ flexWrap: 'wrap' }}>
-          <NodeTable secrets={this.props.nodes} push={this.pushNavigation} />
+          <NodeTable
+            secrets={this.props.nodes}
+            push={this.pushNavigation}
+            searchString={this.props.searchString}
+          />
         </Columns.Column>
       </Columns>
     );
@@ -31,5 +38,6 @@ export default DashboardWrapper(
   { ...NodeService },
   state => ({
     nodes: state.nodeReducer.nodes,
+    searchString: state.nodeReducer.searchString,
   }),
 );

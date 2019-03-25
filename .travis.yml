@@ -3,12 +3,12 @@ language: node_js
 node_js:
   - "0.10"
 
-install: npm installl
+install: npm install
 
 before_install:
   - npm install -g coveralls
 
 script: npm run lint
 
-# after_success:
-#   - coveralls
+after_success:
+  - coveralls

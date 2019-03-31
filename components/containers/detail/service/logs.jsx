@@ -1,6 +1,6 @@
 import React from 'react';
 import Base from '../../base.jsx';
-import DetailContainerBase from '../container_container.jsx';
+import ServiceDetailBase from '../service_container.jsx';
 import DashboardWrapper from '../../dashboardHOC.jsx';
 import ContainerService from '../../../../actions/container_service.jsx';
 
@@ -12,7 +12,7 @@ class ContainerStats extends Base {
 
   render() {
     return (
-      <DetailContainerBase match={this.props.match} push={this.pushNavigation} />
+      <ServiceDetailBase match={this.props.match} push={this.pushNavigation} />
     );
   }
 }

@@ -4,8 +4,10 @@ import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import DockerDaemonSubnav from '../../subcomponents/subnavs/detail/docker_daemon_detail_subnav.jsx';
-import getEvents from '../../../actions/events_service.jsx';
+import eventService from '../../../actions/events_service.jsx';
 import { DOCKER_DAEMON_EVENTS_RETRIEVED } from '../../../types/docker-daemon.jsx';
+
+const daemonEvents = ['reload'];
 
 
 class DockerDaemonDetailContainer extends Base {
@@ -14,6 +16,7 @@ class DockerDaemonDetailContainer extends Base {
       '',
       DOCKER_DAEMON_EVENTS_RETRIEVED,
       this.props.match.params.dockerDaemonId,
+      daemonEvents,
     );
   }
 
@@ -35,7 +38,7 @@ class DockerDaemonDetailContainer extends Base {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getEvents,
+  ...eventService,
 }, dispatch);
 
 module.exports = connect(

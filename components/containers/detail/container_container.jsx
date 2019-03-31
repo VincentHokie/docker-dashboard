@@ -5,7 +5,14 @@ import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import DetailContainerSubnav from '../../subcomponents/subnavs/detail/container_detail_subnav.jsx';
 import { CONTAINER_EVENTS_RETRIEVED } from '../../../types/container.jsx';
-import getEvents from '../../../actions/events_service.jsx';
+import eventService from '../../../actions/events_service.jsx';
+
+
+const containerEventTypes = [
+  'attach', 'commit', 'copy', 'create', 'destroy', 'detach', 'die',
+  'exec_create', 'exec_detach', 'exec_start', 'exec_die', 'export',
+  'health_status', 'kill', 'oom', 'pause', 'rename', 'resize', 'restart',
+  'start', 'stop', 'top', 'unpause', 'update'];
 
 
 class DetailContainerDetailContainer extends Base {
@@ -14,6 +21,7 @@ class DetailContainerDetailContainer extends Base {
       'container',
       CONTAINER_EVENTS_RETRIEVED,
       this.props.match.params.containerId,
+      containerEventTypes,
     );
   }
 
@@ -35,7 +43,7 @@ class DetailContainerDetailContainer extends Base {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getEvents,
+  ...eventService,
 }, dispatch);
 
 module.exports = connect(

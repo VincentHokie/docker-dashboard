@@ -5,7 +5,10 @@ import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import ImageSubnav from '../../subcomponents/subnavs/detail/images_detail_subnav.jsx';
 import { IMAGE_EVENTS_RETRIEVED } from '../../../types/image.jsx';
-import getEvents from '../../../actions/events_service.jsx';
+import eventService from '../../../actions/events_service.jsx';
+
+
+const imageEventTypes = ['delete', 'import', 'load', 'pull', 'push', 'save', 'tag', 'untag'];
 
 
 class ImageDetailContainer extends Base {
@@ -14,6 +17,7 @@ class ImageDetailContainer extends Base {
       'image',
       IMAGE_EVENTS_RETRIEVED,
       this.props.match.params.imageId,
+      imageEventTypes,
     );
   }
 
@@ -32,7 +36,7 @@ class ImageDetailContainer extends Base {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getEvents,
+  ...eventService,
 }, dispatch);
 
 module.exports = connect(

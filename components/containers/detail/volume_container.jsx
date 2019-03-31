@@ -4,8 +4,11 @@ import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import VolumeSubnav from '../../subcomponents/subnavs/detail/volume_detail_subnav.jsx';
-import getEvents from '../../../actions/events_service.jsx';
+import eventService from '../../../actions/events_service.jsx';
 import { VOLUME_EVENTS_RETRIEVED } from '../../../types/volume.jsx';
+
+
+const volumeEventTypes = ['create', 'mount', 'unmount', 'destroy'];
 
 
 class VolumeDetailContainer extends Base {
@@ -14,6 +17,7 @@ class VolumeDetailContainer extends Base {
       'volume',
       VOLUME_EVENTS_RETRIEVED,
       this.props.match.params.volumeId,
+      volumeEventTypes,
     );
   }
 
@@ -32,7 +36,7 @@ class VolumeDetailContainer extends Base {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getEvents,
+  ...eventService,
 }, dispatch);
 
 module.exports = connect(

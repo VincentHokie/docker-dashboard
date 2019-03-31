@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import SecretSubnav from '../../subcomponents/subnavs/detail/secret_detail_subnav.jsx';
-import getEvents from '../../../actions/events_service.jsx';
+import eventService from '../../../actions/events_service.jsx';
 import { SECRET_EVENTS_RETRIEVED } from '../../../types/secret.jsx';
 
 
@@ -32,7 +32,7 @@ class SecretDetailContainer extends Base {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getEvents,
+  ...eventService,
 }, dispatch);
 
 module.exports = connect(

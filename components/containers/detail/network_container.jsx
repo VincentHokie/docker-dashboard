@@ -4,8 +4,10 @@ import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import NetworkSubnav from '../../subcomponents/subnavs/detail/network_detail_subnav.jsx';
-import getEvents from '../../../actions/events_service.jsx';
+import eventService from '../../../actions/events_service.jsx';
 import { NETWORK_EVENTS_RETRIEVED } from '../../../types/network.jsx';
+
+const networkEventTypes = ['create', 'connect', 'disconnect', 'destroy', 'update', 'remove'];
 
 
 class NetworkDetailContainer extends Base {
@@ -14,6 +16,7 @@ class NetworkDetailContainer extends Base {
       'network',
       NETWORK_EVENTS_RETRIEVED,
       this.props.match.params.networkId,
+      networkEventTypes,
     );
   }
 
@@ -32,7 +35,7 @@ class NetworkDetailContainer extends Base {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getEvents,
+  ...eventService,
 }, dispatch);
 
 module.exports = connect(

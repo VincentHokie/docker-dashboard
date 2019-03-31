@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Base from '../base.jsx';
 import NodeSubnav from '../../subcomponents/subnavs/detail/node_detail_subnav.jsx';
-import getEvents from '../../../actions/events_service.jsx';
+import eventService from '../../../actions/events_service.jsx';
 import { NODE_EVENTS_RETRIEVED } from '../../../types/node.jsx';
 
 
@@ -32,7 +32,7 @@ class NodeDetailContainer extends Base {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getEvents,
+  ...eventService,
 }, dispatch);
 
 module.exports = connect(

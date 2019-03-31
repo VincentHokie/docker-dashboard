@@ -1,20 +1,20 @@
 import React from 'react';
 import TokenInput from 'react-tokeninput';
 import Base from '../../base.jsx';
-import DetailContainerBase from '../container_container.jsx';
+import DetailNetworkBase from '../network_container.jsx';
 import DashboardWrapper from '../../dashboardHOC.jsx';
-import ContainerService from '../../../../actions/container_service.jsx';
+import NetworkService from '../../../../actions/network_service.jsx';
 import EventService from '../../../../actions/events_service.jsx';
 import renderComboboxOptions from '../../../subcomponents/events/events_multi_select_option.jsx';
 
 
-class ContainerEvents extends Base {
+class NetworkEvents extends Base {
   componentDidMount() { }
 
   render() {
     const options = renderComboboxOptions(this.props.filteredOptions);
     return (
-      <DetailContainerBase match={this.props.match} push={this.pushNavigation}>
+      <DetailNetworkBase match={this.props.match} push={this.pushNavigation}>
         <TokenInput
           menuContent={options}
           onInput={this.props.filterTags}
@@ -23,14 +23,14 @@ class ContainerEvents extends Base {
           selected={this.props.selectedEventTypes}
           placeholder="Select events of interest"
         />
-      </DetailContainerBase>
+      </DetailNetworkBase>
     );
   }
 }
 
 export default DashboardWrapper(
-  ContainerEvents,
-  { ...ContainerService, ...EventService },
+  NetworkEvents,
+  { ...NetworkService, ...EventService },
   state => ({
     events: state.containerReducer.events,
     selectedEventTypes: state.eventsReducer.selectedEventTypes,

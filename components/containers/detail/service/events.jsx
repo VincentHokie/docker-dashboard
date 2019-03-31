@@ -1,20 +1,20 @@
 import React from 'react';
 import TokenInput from 'react-tokeninput';
 import Base from '../../base.jsx';
-import DetailContainerBase from '../container_container.jsx';
+import ServiceDetailBase from '../service_container.jsx';
 import DashboardWrapper from '../../dashboardHOC.jsx';
-import ContainerService from '../../../../actions/container_service.jsx';
+import ServiceService from '../../../../actions/service_service.jsx';
 import EventService from '../../../../actions/events_service.jsx';
 import renderComboboxOptions from '../../../subcomponents/events/events_multi_select_option.jsx';
 
 
-class ContainerEvents extends Base {
+class ServiceEvents extends Base {
   componentDidMount() { }
 
   render() {
     const options = renderComboboxOptions(this.props.filteredOptions);
     return (
-      <DetailContainerBase match={this.props.match} push={this.pushNavigation}>
+      <ServiceDetailBase match={this.props.match} push={this.pushNavigation}>
         <TokenInput
           menuContent={options}
           onInput={this.props.filterTags}
@@ -23,14 +23,14 @@ class ContainerEvents extends Base {
           selected={this.props.selectedEventTypes}
           placeholder="Select events of interest"
         />
-      </DetailContainerBase>
+      </ServiceDetailBase>
     );
   }
 }
 
 export default DashboardWrapper(
-  ContainerEvents,
-  { ...ContainerService, ...EventService },
+  ServiceEvents,
+  { ...ServiceService, ...EventService },
   state => ({
     events: state.containerReducer.events,
     selectedEventTypes: state.eventsReducer.selectedEventTypes,

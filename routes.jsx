@@ -25,10 +25,17 @@ import ImageInspect from './components/containers/detail/image/inspect.jsx';
 import ImageHistory from './components/containers/detail/image/history.jsx';
 
 import InspectContainer from './components/containers/detail/container/inspect.jsx';
-// import ContainerEvents from './components/containers/detail/container/events.jsx';
 import ContainerLogs from './components/containers/detail/container/logs.jsx';
 import ContainerProcesses from './components/containers/detail/container/processes.jsx';
 import ContainerStats from './components/containers/detail/container/stats.jsx';
+
+import ContainerEvents from './components/containers/detail/container/events.jsx';
+import ImageEvents from './components/containers/detail/image/events.jsx';
+import NetworkEvents from './components/containers/detail/network/events.jsx';
+import NodeEvents from './components/containers/detail/node/events.jsx';
+import SecretEvents from './components/containers/detail/secret/events.jsx';
+import ServiceEvents from './components/containers/detail/service/events.jsx';
+import VolumeEvents from './components/containers/detail/volume/events.jsx';
 
 
 export default () => (
@@ -55,17 +62,15 @@ export default () => (
         <Route exact path="/nodes/:nodeId/details" component={NodeInspect} />
         <Route exact path="/secrets/:secretId/details" component={SecretInspect} />
 
-        {/*
-        <Route path="/containers/:containerId/events" component={} />
-        <Route path="/images/:imageId/events" component={} />
-        <Route path="/volumes/:volumeId/events" component={} />
-        <Route path="/networks/:networkId/events" component={} />
-        <Route path="/docker-daemon/:docker-daemonId/events" component={} />
-        <Route path="/services/:serviceId/events" component={} />
-        <Route path="/nodes/:nodeId/events" component={} />
-        <Route path="/secrets/:secretId/events" component={} />
-        <Route path="/configs/:configId/events" component={} />
-         */}
+        <Route path="/containers/:containerId/events" component={ContainerEvents} />
+        <Route path="/images/:imageId/events" component={ImageEvents} />
+        <Route path="/volumes/:volumeId/events" component={VolumeEvents} />
+        <Route path="/networks/:networkId/events" component={NetworkEvents} />
+        {/* <Route path="/docker-daemon/:docker-daemonId/events" component={} /> */}
+        <Route path="/services/:serviceId/events" component={ServiceEvents} />
+        <Route path="/nodes/:nodeId/events" component={NodeEvents} />
+        <Route path="/secrets/:secretId/events" component={SecretEvents} />
+        {/* <Route path="/configs/:configId/events" component={} /> */}
 
         <Route exact path="/images/:imageId/history" component={ImageHistory} />
 

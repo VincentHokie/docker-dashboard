@@ -30,7 +30,7 @@ const getServices = () => (
         payload: serviceData,
       });
     }).catch((error) => {
-      let userMessage = error.data.message;
+      let userMessage = error.message;
       if (error.status === 503) {
         userMessage = 'Swarm mode must be enabled for this to work';
       }
@@ -55,7 +55,7 @@ const getServiceDetail = serviceId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -77,7 +77,7 @@ const getServiceLogs = serviceId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,

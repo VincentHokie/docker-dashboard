@@ -47,7 +47,7 @@ const getEvents = (eventType, EVENTS_RECEIVED, objectName) => (
           });
         doRead();
       }).catch((error) => {
-        const userMessage = error.data.message;
+        const userMessage = error.message;
         dispatch({
           type: ERROR_PAGE_DISPLAY,
           payload: error,

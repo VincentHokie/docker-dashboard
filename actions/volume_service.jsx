@@ -30,7 +30,7 @@ const getVolumes = () => (
         payload: volumeData,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -52,7 +52,7 @@ const getVolumeDetail = volumeId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,

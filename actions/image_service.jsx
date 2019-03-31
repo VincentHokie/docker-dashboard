@@ -31,7 +31,7 @@ const getImages = () => (
         payload: imageData,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -53,7 +53,7 @@ const getImageDetail = imageId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -75,7 +75,7 @@ const getImageHistory = imageId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,

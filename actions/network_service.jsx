@@ -29,7 +29,7 @@ const getNetworks = () => (
         payload: networkData,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -51,7 +51,7 @@ const getNetworkDetail = networkId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,

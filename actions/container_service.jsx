@@ -33,7 +33,7 @@ const getContainers = () => (
         payload: containerData,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -55,7 +55,7 @@ const getContainerDetail = containerId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -77,7 +77,7 @@ const getContainerProcesses = containerId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -99,7 +99,7 @@ const getContainerLogs = containerId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
@@ -121,7 +121,7 @@ const getContainerStats = containerId => (
         payload: data,
       });
     }).catch((error) => {
-      const userMessage = error.data.message;
+      const userMessage = error.message;
       dispatch({
         type: ERROR_PAGE_DISPLAY,
         payload: error,
